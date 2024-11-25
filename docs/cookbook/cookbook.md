@@ -17,7 +17,8 @@ You can find/setup your API key [here](https://www.aifunction.com/account/api-ke
 
 
 ```python
-%env WECO_API_KEY=<YOUR_WECO_API_KEY>
+import os
+os.environ["WECO_API_KEY"] = "YOUR_WECO_API_KEY"
 ```
 
 You can build powerful AI functions for complex tasks quickly and without friction. For example, you can create an AI function on our [platform](https://www.aifunction.com/function/new) with a simple description as shown below:
@@ -115,13 +116,11 @@ In the previous examples, we've shown you how to call an AI function with just o
 ```python
 task_evaluator = build(task_description="I want to know if AI can solve a problem for me, how easy it is to arrive at a solution and whether any helpful tips for me along the way. Help me understand this through - 'feasibility', 'justification', and 'suggestions'.")
 
-
 task1 = {
     "text_input": "I want to train a model to predict house prices using the Boston Housing dataset hosted on Kaggle."
 }
 task2 = {
     "text_input": "I want to train a model to classify digits using the MNIST dataset hosted on Kaggle using a Google Colab notebook. Attached is an example of what some of the digits would look like.",
-    "images_input": ["https://machinelearningmastery.com/wp-content/uploads/2019/02/Plot-of-a-Subset-of-Images-from-the-MNIST-Dataset-1024x768.png"]
 }
 responses = task_evaluator.batch([task1, task2])
 for response in responses:
@@ -210,7 +209,11 @@ You can now understand why a model generated an output. For this, you'll need to
 task_evaluator = build(task_description="I want to know if AI can solve a problem for me, how easy it is to arrive at a solution and whether any helpful tips for me along the way. Help me understand this through - 'feasibility', 'justification', and 'suggestions'.")
 
 output, metadata = task_evaluator("I want to train a model to predict house prices using the Boston Housing dataset hosted on Kaggle.", return_reasoning=True)
-reasoning_steps = response["reasoning_steps"]
 for key, value in output.items(): print(f"{key}: {value}")
 for i, step in enumerate(metadata["reasoning_steps"]): print(f"Step {i+1}: {step}")
+```
+
+
+```python
+
 ```
