@@ -735,12 +735,24 @@ class Client:
             loop = asyncio.get_running_loop()
             if loop.is_running():
                 nest_asyncio.apply()
-            task = loop.create_task(self._batch_query(
-                fn_name=fn_name, version=version, batch_inputs=batch_inputs, return_reasoning=return_reasoning, strict=strict
-            ))
+            task = loop.create_task(
+                self._batch_query(
+                    fn_name=fn_name,
+                    version=version,
+                    batch_inputs=batch_inputs,
+                    return_reasoning=return_reasoning,
+                    strict=strict,
+                )
+            )
             return loop.run_until_complete(task)
         except RuntimeError:
             # If no event loop is running, use asyncio.run
-            return asyncio.run(self._batch_query(
-                fn_name=fn_name, version=version, batch_inputs=batch_inputs, return_reasoning=return_reasoning, strict=strict
-            ))
+            return asyncio.run(
+                self._batch_query(
+                    fn_name=fn_name,
+                    version=version,
+                    batch_inputs=batch_inputs,
+                    return_reasoning=return_reasoning,
+                    strict=strict,
+                )
+            )
