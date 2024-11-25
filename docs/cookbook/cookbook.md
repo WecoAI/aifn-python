@@ -1,7 +1,3 @@
-<div align="center" style="display: flex; align-items: center; justify-content: left;">
-  <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Georgia&size=32&duration=4000&pause=400&color=EE4C2C&vCenter=true&multiline=false&width=750&height=100&lines=AI+Function+Cookbook;" alt="Typing SVG" /></a>
-</div>
-
 ## Getting Started
 
 A client facing API for interacting with the [Weco AI](https://www.weco.ai/)'s AI function [platform](https://www.aifunction.com). It empowers you to go from zero to AI in just a few seconds!

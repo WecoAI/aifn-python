@@ -5,6 +5,38 @@ from .client import Client
 import warnings
 
 
+def build(task_description: str, is_async: bool = False, api_key: Optional[str] = None) -> "AIFunction":
+    """
+    Build a specialized AI function for a given task.
+
+    Parameters
+    ----------
+    task_description : str
+        The description of the task for which the function is being built.
+
+    is_async : bool, optional
+        Indicates whether the function should be asynchronous. Defaults to False.
+
+    api_key : str, optional
+        The API key for the WecoAI service. If not provided, the API key must be set using the environment variable - `WECO_API_KEY`.
+
+    Returns
+    -------
+    AIFunction
+        A specialized AI function for the given task.
+
+    Examples
+    --------
+    >>> from aifn import build
+    >>> country_to_capital = build("Given a country name, return its capital city as 'capital'.")
+    >>> country_to_capital("India").output["capital"]
+    'New Delhi'
+    """
+    client = Client(api_key=api_key)
+    fn_name, fn_version, fn_desc = client.build(task_description=task_description)
+    return AIFunction(fn_name=fn_name, version=fn_version, fn_desc=fn_desc, is_async=is_async, api_key=api_key)
+
+
 class AIFunction:
     """
     An AI powered function that can be called like any other function to perform a specific task.
@@ -83,6 +115,33 @@ class AIFunction:
         -------
         NamedTuple
             A NamedTuple containing the output and metadata of the response.
+
+        Examples
+        --------
+
+        **Build and call a function**
+
+        >>> from aifn import build
+        >>> country_to_capital = build("Given a country name, return its capital city as 'capital'.")
+        >>> response = country_to_capital("France")
+        >>> response.output["capital"]
+        'Paris'
+
+        **Retrieve and call an existing function**
+
+        >>> from aifn import AIFunction
+        >>> idea_evaluator = AIFunction("BusinessIdeaAnalyzer-XYZ123")
+        >>> response = idea_evaluator("A platform to connect pet owners with pet sitters.")
+        >>> response.output["score"]
+        0.85
+
+        **Call an existing function with image inputs**
+
+        >>> from aifn import AIFunction
+        >>> image_classifier = AIFunction("ImageClassifier-ABC123")
+        >>> response = image_classifier(images_input=["https://example.com/cat.jpg"])
+        >>> response.output["label"]
+        'cat'
         """
         return self._fn(
             fn_name=self.fn_name,
@@ -119,6 +178,16 @@ class AIFunction:
         -------
         List[NamedTuple]
             A list of NamedTuples, each containing the output and metadata of the response.
+
+        Examples
+        -------
+        >>> from aifn import build
+        >>> country_to_capital = build("Given a country name, return its capital city as 'capital'.")
+        >>> batch_inputs = [{"text_input": "India"}, {"text_input": "USA"}, {"text_input": "UK"}]
+        >>> responses = country_to_capital.batch(batch_inputs)
+        >>> outputs = [response.output["capital"] for response in responses]
+        >>> outputs
+        ['New Delhi', 'Washington, D.C.', 'London']
         """
         return self._batch_fn(
             fn_name=self.fn_name,
@@ -179,12 +248,21 @@ class AIFunction:
 
     def make_sync(self) -> "AIFunction":
         """
-        Convert the AI function to synchronous mode.
+        Convert an asynchronous AI function to a synchronous AI Function.
 
         Returns
         -------
         AIFunction
             A new AIFunction instance in synchronous mode.
+
+        Examples
+        -------
+        >>> from aifn import build
+        >>> country_to_capital = build("Given a country name, return its capital city as 'capital'.", is_async=True)
+        >>> sync_country_to_capital = country_to_capital.make_sync()
+        >>> response = sync_country_to_capital("USA")
+        >>> response.output["capital"]
+        'Washington, D.C.'
         """
         if not self.is_async:
             warnings.warn(f"{self} is already a synchronous AI Function...Returning the same object.")
@@ -195,12 +273,21 @@ class AIFunction:
 
     def make_async(self) -> "AIFunction":
         """
-        Convert the AI function to asynchronous mode.
+        Convert a synchronous AI function to an asynchronous AI Function.
 
         Returns
         -------
         AIFunction
             A new AIFunction instance in asynchronous mode.
+
+        Examples
+        -------
+        >>> from aifn import build
+        >>> country_to_capital = build("Given a country name, return its capital city as 'capital'.", is_async=False)
+        >>> async_country_to_capital = country_to_capital.make_async()
+        >>> response = await async_country_to_capital("USA")
+        >>> response.output["capital"]
+        'Washington, D.C.'
         """
         if self.is_async:
             warnings.warn(f"{self} is already an asynchronous AI Function...Returning the same object.")
@@ -208,28 +295,3 @@ class AIFunction:
         return AIFunction(
             fn_name=self.fn_name, version=self.version, fn_desc=self.fn_desc, is_async=True, api_key=self._client.api_key
         )
-
-
-def build(task_description: str, is_async: bool = False, api_key: Optional[str] = None) -> AIFunction:
-    """
-    Build a specialized AI function for a given task.
-
-    Parameters
-    ----------
-    task_description : str
-        The description of the task for which the function is being built.
-
-    is_async : bool, optional
-        Indicates whether the function should be asynchronous. Defaults to False.
-
-    api_key : str, optional
-        The API key for the WecoAI service. If not provided, the API key must be set using the environment variable - `WECO_API_KEY`.
-
-    Returns
-    -------
-    AIFunction
-        A specialized AI function for the given task.
-    """
-    client = Client(api_key=api_key)
-    fn_name, fn_version, fn_desc = client.build(task_description=task_description)
-    return AIFunction(fn_name=fn_name, version=fn_version, fn_desc=fn_desc, is_async=is_async, api_key=api_key)

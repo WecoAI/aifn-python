@@ -1,10 +1,7 @@
-<div align="center" style="display: flex; align-items: center; justify-content: center;">
-   <picture>
-      <source srcset="assets/ai_function_dark.png" media="(prefers-color-scheme: light)">
-      <source srcset="assets/ai_function_dark.png" media="(prefers-color-scheme: dark)">
-      <img src="assets/ai_function_light.png" alt="AI functions">
-   </picture>
-</div>
+<figure markdown="span">
+    ![Image title](assets/ai_function_light.png#only-dark)
+    ![Image title](assets/ai_function_dark.png#only-light)
+</figure>
 
 #
 

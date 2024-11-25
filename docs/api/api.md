@@ -1,3 +1,3 @@
-# API Reference Guide
+# API Reference
 
-:::aifn.ai_function
+:::aifn.function
