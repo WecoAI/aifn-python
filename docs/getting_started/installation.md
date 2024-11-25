@@ -6,13 +6,13 @@ The package is easy to install and keep up to date.
 
 Install `aifn` using [`pip`](https://pip.pypa.io/en/stable/getting-started/):
 ```bash
-pip install weco
+pip install aifn
 ```
 *We always recommend installing the package within a python virtual environment or conda environment.*
 
 If you already have the package and simply want to upgrade:
 ```bash
-pip install --upgrade weco
+pip install --upgrade aifn
 ```
 
 ## Source 📖
