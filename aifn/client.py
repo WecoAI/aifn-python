@@ -1,4 +1,5 @@
 import asyncio
+import nest_asyncio
 import base64
 import os
 import warnings
@@ -613,7 +614,7 @@ class Client:
             if not all(isinstance(img, str) for inp in batch_inputs for img in inp.get("images_input", [])):
                 raise ValueError("Images input must be a list of strings.")
 
-    def _batch_query(
+    async def _batch_query(
         self,
         fn_name: str,
         version: Optional[Union[str, int]],
@@ -621,7 +622,7 @@ class Client:
         return_reasoning: bool,
         strict: bool,
     ) -> List[NamedTuple]:
-        """Internal method to handle both synchronous and asynchronous batch query requests.
+        """Internal method to handle asynchronous batch query requests.
 
         Parameters
         ----------
@@ -644,21 +645,18 @@ class Client:
 
         Returns
         -------
-        Union[List[NamedTuple], Coroutine[Any, Any, List[NamedTuple]]]
-            A list of NamedTuples, each containing the output and metadata of the response, or a coroutine that returns such a list.
+        List[NamedTuple]
+            A list of NamedTuples, each containing the output and metadata of the response.
         """
 
         # Validate the batch inputs
         self._validate_batch_query(batch_inputs=batch_inputs)
 
-        async def run_queries():
-            tasks = [
-                self.aquery(fn_name=fn_name, version=version, return_reasoning=return_reasoning, strict=strict, **fn_input)
-                for fn_input in batch_inputs
-            ]
-            return await asyncio.gather(*tasks)
-
-        return run_queries()
+        tasks = [
+            self.aquery(fn_name=fn_name, version=version, return_reasoning=return_reasoning, strict=strict, **fn_input)
+            for fn_input in batch_inputs
+        ]
+        return await asyncio.gather(*tasks)
 
     async def abatch_query(
         self,
@@ -732,8 +730,17 @@ class Client:
         List[NamedTuple]
             A list of NamedTuples, each containing the output and metadata of the response.
         """
-        return asyncio.run(
-            self._batch_query(
+        try:
+            # Check if an event loop is already running
+            loop = asyncio.get_running_loop()
+            if loop.is_running():
+                nest_asyncio.apply()
+            task = loop.create_task(self._batch_query(
                 fn_name=fn_name, version=version, batch_inputs=batch_inputs, return_reasoning=return_reasoning, strict=strict
-            )
-        )
+            ))
+            return loop.run_until_complete(task)
+        except RuntimeError:
+            # If no event loop is running, use asyncio.run
+            return asyncio.run(self._batch_query(
+                fn_name=fn_name, version=version, batch_inputs=batch_inputs, return_reasoning=return_reasoning, strict=strict
+            ))

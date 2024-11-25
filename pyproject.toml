@@ -13,7 +13,7 @@ readme = "README.md"
 version = "0.2.0"
 license = {text = "MIT"}
 requires-python = ">=3.8"
-dependencies = ["requests", "asyncio", "httpx[http2]", "pillow"]
+dependencies = ["requests", "asyncio", "nest_asyncio", "httpx[http2]", "pillow"]
 keywords = ["AI", "LLM", "VLM", "AI functions", "Prompt Engineering", "NLP"]
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -32,6 +32,10 @@ docs = ["jupyter", "black", "mkdocs", "mkdocs-material", "mkdocs-material-extens
 packages = ["aifn"]
 
 [tool.setuptools_scm]
+
+# Test configuration
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "function"
 
 # Lint and format code
 [tool.ruff]
