@@ -1,6 +1,6 @@
 # Project information
 site_name: AI Function
-site_url: https://WecoAI.github.io/aifn
+site_url: https://WecoAI.github.io/aifn-python
 site_author: Weco AI
 site_description: >-
   Documentation for `aifn`, a client-side API for interacting with Weco AI's AI functions.
