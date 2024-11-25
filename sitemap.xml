@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://WecoAI.github.io/aifn-python/</loc>
+         <lastmod>2024-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://WecoAI.github.io/aifn-python/contributing/</loc>
+         <lastmod>2024-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://WecoAI.github.io/aifn-python/api/api/</loc>
+         <lastmod>2024-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://WecoAI.github.io/aifn-python/cookbook/cookbook/</loc>
+         <lastmod>2024-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://WecoAI.github.io/aifn-python/getting_started/installation/</loc>
+         <lastmod>2024-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://WecoAI.github.io/aifn-python/getting_started/introduction/</loc>
+         <lastmod>2024-11-25</lastmod>
+    </url>
+</urlset>
