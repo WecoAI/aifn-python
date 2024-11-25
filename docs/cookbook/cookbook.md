@@ -212,8 +212,3 @@ output, metadata = task_evaluator("I want to train a model to predict house pric
 for key, value in output.items(): print(f"{key}: {value}")
 for i, step in enumerate(metadata["reasoning_steps"]): print(f"Step {i+1}: {step}")
 ```
-
-
-```python
-
-```

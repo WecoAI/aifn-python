@@ -1,7 +1,7 @@
 <div align="center" style="display: flex; align-items: center; justify-content: center;">
   <picture>
     <source srcset="docs/assets/ai_function_light.png" media="(prefers-color-scheme: dark)">
-    <img src="docs/assets/ai_function_dark.png" alt="Your Image" style="max-width: 100%;">
+    <img src="docs/assets/ai_function_dark.png" alt="AI Function" style="max-width: 100%;">
   </picture>
 </div>
 
