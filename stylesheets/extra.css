@@ -1,0 +1,54 @@
+/* Style links in the main content */
+main a {
+    color: #F55D2A !important; /* Highlight links in new base orange */
+    text-decoration: none; /* Remove underline */
+}
+
+main a:hover, main a:focus {
+    color: #FF5722 !important; /* Slightly darker orange on hover */
+    text-decoration: none; /* Ensure no underline */
+}
+
+/* Style links in the Table of Contents */
+nav[aria-label="Table of contents"] a {
+    color: inherit !important; /* Keep default color initially */
+    text-decoration: none;
+}
+
+nav[aria-label="Table of contents"] a:hover, nav[aria-label="Table of contents"] a:focus {
+    color: #F55D2A !important; /* Change text to new base orange on hover */
+    text-decoration: none; /* Ensure no underline */
+}
+
+/* Style links in the header navigation (e.g., About, Contributing) */
+header a, .md-header-nav a, .md-nav__item a {
+    color: inherit !important; /* Keep default color initially */
+    text-decoration: none;
+}
+
+header a:hover, header a:focus, .md-header-nav a:hover, .md-header-nav a:focus, .md-nav__item a:hover, .md-nav__item a:focus {
+    color: #F55D2A !important; /* Change text to new base orange on hover */
+    text-decoration: none; /* Ensure no underline */
+}
+
+/* Style links in the sidebar navigation */
+nav[aria-label="Navigation"] a {
+    color: inherit !important; /* Keep default color initially */
+    text-decoration: none;
+}
+
+nav[aria-label="Navigation"] a:hover, nav[aria-label="Navigation"] a:focus {
+    color: #F55D2A !important; /* Change text to new base orange on hover */
+    text-decoration: none; /* Ensure no underline */
+}
+
+/* Style links in the footer */
+footer a {
+    color: inherit !important; /* Keep default color initially */
+    text-decoration: none;
+}
+
+footer a:hover, footer a:focus {
+    color: #F55D2A !important; /* Change text to new base orange on hover */
+    text-decoration: none; /* Ensure no underline */
+}
