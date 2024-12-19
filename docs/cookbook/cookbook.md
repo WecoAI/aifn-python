@@ -215,4 +215,4 @@ for i, step in enumerate(metadata["reasoning_steps"]): print(f"Step {i+1}: {step
 
 ## End-to-End Examples
 
-For more on what AI functions can do, check out these [examples](examples/maze_runner.md).
+For more on what AI functions can do, check out these [examples](.).
