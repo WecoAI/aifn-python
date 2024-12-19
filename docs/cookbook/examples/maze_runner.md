@@ -4,7 +4,7 @@
 
 In this tutorial, we're going to walk you through how AI functions can interact with games using simply images from the game. To do this, we will use OpenAI's [Procgen Benchmark](https://openai.com/index/procgen-benchmark/), specifically the 2D maze environment and [AI functions](https://www.aifunction.com/) by Weco. We'll build an agent that uses AI functions at it's core. Lets jump right in!
 
-You can follow along through the code and also watch our quick demo on the same:
+You can follow along through the code and also watch our quick demo on the same [here](https://www.youtube.com/embed/DLZ6lhxAFYU).
 <iframe width="640" height="360" src="https://www.youtube.com/embed/DLZ6lhxAFYU" frameborder="0" allowfullscreen></iframe>
 
 <a href="https://colab.research.google.com/github/WecoAI/aifn-python/blob/main/examples/maze_runner.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" width=110 height=20/></a>
