@@ -47,6 +47,6 @@ idea_evaluator = AIFunction("BusinessIdeaAnalyzer-XYZ123") # Replace with your a
 response = idea_evaluator("A subscription service for personalized, AI-generated bedtime stories for children.").output
 ```
 
-To learn how to get the most your of **your** AI functions, check out our [cookbook](cookbook//cookbook.md) and [API reference](api/api.md).
+To learn how to get the most your of **your** AI functions, check out our [cookbook](cookbook/cookbook.md), our [API reference](api/api.md) and these end-to-end [examples](cookbook/examples/maze_runner.md).
 
 Happy building!

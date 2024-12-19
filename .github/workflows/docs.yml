@@ -32,6 +32,7 @@ jobs:
       - name: Convert notebooks to markdown for docs
         run: |
           jupyter nbconvert --to markdown "examples/cookbook.ipynb" --output-dir="docs/cookbook"
+          jupyter nbconvert --to markdown "examples/maze_runner.ipynb" --output-dir="docs/cookbook/examples"
         
       - name: Commit changes
         run: |

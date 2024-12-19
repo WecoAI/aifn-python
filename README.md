@@ -49,7 +49,7 @@ idea_evaluator = AIFunction("BusinessIdeaAnalyzer-XYZ123") # Replace with your a
 response = idea_evaluator("A subscription service for personalized, AI-generated bedtime stories for children.").output
 ```
 
-- The `aifn.build` function enables quick and easy prototyping of new AI functions that use foundation models as thier core. We encourage users to do this through our [platform](https://www.aifunction.com) for maximum control and ease of use, however, you can also do this through our API as shown [here](examples/cookbook.ipynb).
+- The `aifn.build` function enables quick and easy prototyping of new AI functions that use foundation models as their core. We encourage users to do this through our [platform](https://www.aifunction.com) for maximum control and ease of use, however, you can also do this through our API as shown [here](examples/cookbook.ipynb).
 - `aifn.AIFunction` allows you to retrieve an AI function you've already created.
 - Finally, as shown in the example above, `AIFunction` objects are akin to any function that we are used to...the only difference is that they have a large language model to power them!
 

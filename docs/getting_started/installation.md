@@ -38,5 +38,6 @@ If you need help getting started, you can check out any of the following resourc
 - [Introduction](introduction.md)
 - [Cookbook](../cookbook/cookbook.md)
 - [API Reference](../api/api.md)
+- [End-to-End Examples](../cookbook/examples/maze_runner.md)
 
 Happy building!

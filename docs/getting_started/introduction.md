@@ -39,6 +39,6 @@ Now you can call your AI function, just like any other function, anywhere in you
 response = idea_evaluator("A subscription service for personalized, AI-generated bedtime stories for children.")
 ```
 
-To learn how to get the most your of **your** AI functions, check out our [cookbook](../cookbook/cookbook.md) and [API reference](../api/api.md).
+To learn how to get the most your of **your** AI functions, check out our [cookbook](../cookbook/cookbook.md), our [API reference](../api/api.md) and these end-to-end [examples](../cookbook/examples/maze_runner.md).
 
 Happy building!

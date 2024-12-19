@@ -1,11 +1,11 @@
 /* Style links in the main content */
 main a {
-    color: #FF5722 !important; /* Highlight links in orange */
+    color: #F55D2A !important; /* Highlight links in new base orange */
     text-decoration: none; /* Remove underline */
 }
 
 main a:hover, main a:focus {
-    color: #E64A19 !important; /* Slightly darker orange on hover */
+    color: #FF5722 !important; /* Slightly darker orange on hover */
     text-decoration: none; /* Ensure no underline */
 }
 
@@ -16,7 +16,7 @@ nav[aria-label="Table of contents"] a {
 }
 
 nav[aria-label="Table of contents"] a:hover, nav[aria-label="Table of contents"] a:focus {
-    color: #FF5722 !important; /* Change text to orange on hover */
+    color: #F55D2A !important; /* Change text to new base orange on hover */
     text-decoration: none; /* Ensure no underline */
 }
 
@@ -27,7 +27,7 @@ header a, .md-header-nav a, .md-nav__item a {
 }
 
 header a:hover, header a:focus, .md-header-nav a:hover, .md-header-nav a:focus, .md-nav__item a:hover, .md-nav__item a:focus {
-    color: #FF5722 !important; /* Change text to orange on hover */
+    color: #F55D2A !important; /* Change text to new base orange on hover */
     text-decoration: none; /* Ensure no underline */
 }
 
@@ -38,7 +38,7 @@ nav[aria-label="Navigation"] a {
 }
 
 nav[aria-label="Navigation"] a:hover, nav[aria-label="Navigation"] a:focus {
-    color: #FF5722 !important; /* Change text to orange on hover */
+    color: #F55D2A !important; /* Change text to new base orange on hover */
     text-decoration: none; /* Ensure no underline */
 }
 
@@ -49,6 +49,6 @@ footer a {
 }
 
 footer a:hover, footer a:focus {
-    color: #FF5722 !important; /* Change text to orange on hover */
+    color: #F55D2A !important; /* Change text to new base orange on hover */
     text-decoration: none; /* Ensure no underline */
 }
