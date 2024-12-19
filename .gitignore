@@ -167,8 +167,8 @@ cython_debug/
 # Case Studies
 case_studies/
 
-# Testing files
-test.py
+# Local testing files
+local
 
 # Lint cache
 .ruff_cache

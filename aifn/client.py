@@ -730,29 +730,25 @@ class Client:
         List[NamedTuple]
             A list of NamedTuples, each containing the output and metadata of the response.
         """
+
+        async def run_batch():
+            return await self._batch_query(
+                fn_name=fn_name, version=version, batch_inputs=batch_inputs, return_reasoning=return_reasoning, strict=strict
+            )
+
+        # Create a new event loop if one doesn't exist
         try:
-            # Check if an event loop is already running
-            loop = asyncio.get_running_loop()
-            if loop.is_running():
-                nest_asyncio.apply()
-            task = loop.create_task(
-                self._batch_query(
-                    fn_name=fn_name,
-                    version=version,
-                    batch_inputs=batch_inputs,
-                    return_reasoning=return_reasoning,
-                    strict=strict,
-                )
-            )
-            return loop.run_until_complete(task)
+            loop = asyncio.get_event_loop()
         except RuntimeError:
-            # If no event loop is running, use asyncio.run
-            return asyncio.run(
-                self._batch_query(
-                    fn_name=fn_name,
-                    version=version,
-                    batch_inputs=batch_inputs,
-                    return_reasoning=return_reasoning,
-                    strict=strict,
-                )
-            )
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+
+        # Apply nest_asyncio if the loop is already running
+        if loop.is_running():
+            nest_asyncio.apply()
+
+        try:
+            return loop.run_until_complete(run_batch())
+        finally:
+            # Don't close the loop, just let it be cleaned up naturally
+            pass
